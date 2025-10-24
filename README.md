@@ -62,3 +62,9 @@ Design and implement a **scalable, query-optimized data warehouse** using **MySQ
 | **Scope**            | Process only the **latest snapshot** of data; **no historical tracking** (no Slowly Changing Dimensions required).                                                                                                                              |
 | **Documentation**    | Provide comprehensive documentation of the data model and pipeline to support both technical and non-technical stakeholders. |
 | **Environment**      | Implemented in **MySQL 8.0+**, using a single schema named **`DataWarehouse`**, structured with **layer prefixes**:<br>• `bronze_` (raw)<br>• `silver_` (cleansed/integrated)<br>• `gold_` (analytical)                                         |
+
+--- 
+## 👩🏻‍💻Author
+**Aimen Zikra**
+
+Data Analyst | Python | Data Visualization 
