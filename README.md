@@ -2,8 +2,7 @@
 
 ## 🌟 Welcome to My Data Warehouse & Analytics Project!
 
-This project is a **complete, end-to-end data warehousing and analytics solution** designed to showcase practical, real-world data engineering and analytics skills.
-
+This project is a data warehousing solution designed to showcase practical, real-world data engineering and analytics skills.
 Built entirely with **MySQL**, it simulates a **production-grade data warehouse** that integrates **ERP and CRM sales data** to uncover meaningful, data-driven business insights.
 
 ### 💡 What This Project Demonstrates
