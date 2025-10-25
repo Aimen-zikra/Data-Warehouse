@@ -93,6 +93,9 @@ Leverage **production-grade SQL** and **Python (Pandas)** to extract deep busine
 | **Customer Lifetime Value** | `JOIN` on `gold_dim_customers` | `df.groupby('customer_key').agg(...)` |
 | **Profit Margin per Product** | `SUM(sales - cost)` | `df['profit'] = df['sales'] - df['cost']` |
 
+<img width="848" height="702" alt="top_products" src="https://github.com/user-attachments/assets/d76b898c-bd59-4347-9757-6a46ab5273e2" />
+<img width="1015" height="592" alt="monthly revenue" src="https://github.com/user-attachments/assets/72276783-479f-4332-b879-a56bd7250b32" />
+
 ---
 
 ### 🔍Key Analytical Reports
