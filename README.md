@@ -10,7 +10,7 @@ Built entirely with **MySQL**, it simulates a **production-grade data warehouse*
 - **Modern Data Architecture:** A clean, scalable warehouse design following best practices.
 - **ETL Pipelines:** Automated and optimized data extraction, transformation, and loading workflows.
 - **Data Modeling:** A well-structured schema built for analytics performance and flexibility.
-- **SQL Analytics:** Advanced SQL queries and dashboards that deliver actionable insights for decision-making.
+- **SQL Analytics:** Advanced SQL queries and visuals that deliver actionable insights for decision-making.
 
 ---
 
@@ -87,9 +87,9 @@ Leverage **production-grade SQL** and **Python (Pandas)** to extract deep busine
 
 | Insight | SQL Query | Python (Pandas) |
 |-------|----------|-----------------|
-| **Total Revenue** | [`business_metrics.sql`](./business_metrics.sql) | `df['sales_amount'].sum()` |
-| **Monthly Revenue & MoM Growth** | [`business_metrics.sql`](./business_metrics.sql) | `df.groupby('month')['sales_amount'].sum()` |
-| **Top 10 Products by Revenue** | [`business_metrics.sql`](./business_metrics.sql) | `df.merge(products).groupby('product_name')...` |
+| **Total Revenue** | [`business metrics.sql`](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql) | `df['sales_amount'].sum()` |
+| **Monthly Revenue & MoM Growth** | [`business_metrics.sql`]([./business_metrics.sql](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql)) | `df.groupby('month')['sales_amount'].sum()` |
+| **Top 10 Products by Revenue** | [`business_metrics.sql`]([./business_metrics.sql](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql)) | `df.merge(products).groupby('product_name')...` |
 | **Customer Lifetime Value** | `JOIN` on `gold_dim_customers` | `df.groupby('customer_key').agg(...)` |
 | **Profit Margin per Product** | `SUM(sales - cost)` | `df['profit'] = df['sales'] - df['cost']` |
 
