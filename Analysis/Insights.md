@@ -22,9 +22,9 @@ Leverage **production-grade SQL** and **Python (Pandas)** to extract deep busine
 
 | Insight | SQL Query | Python (Pandas) |
 |-------|----------|-----------------|
-| **Total Revenue** | [`business_metrics.sql`](./business_metrics.sql) | `df['sales_amount'].sum()` |
-| **Monthly Revenue & MoM Growth** | [`business_metrics.sql`](./business_metrics.sql) | `df.groupby('month')['sales_amount'].sum()` |
-| **Top 10 Products by Revenue** | [`business_metrics.sql`](./business_metrics.sql) | `df.merge(products).groupby('product_name')...` |
+| **Total Revenue** | [`business_metrics.sql`](./business metrics.sql) | `df['sales_amount'].sum()` |
+| **Monthly Revenue & MoM Growth** | [`business_metrics.sql`](./business metrics.sql) | `df.groupby('month')['sales_amount'].sum()` |
+| **Top 10 Products by Revenue** | [`business_metrics.sql`](./business metrics.sql) | `df.merge(products).groupby('product_name')...` |
 | **Customer Lifetime Value** | `JOIN` on `gold_dim_customers` | `df.groupby('customer_key').agg(...)` |
 | **Profit Margin per Product** | `SUM(sales - cost)` | `df['profit'] = df['sales'] - df['cost']` |
 
