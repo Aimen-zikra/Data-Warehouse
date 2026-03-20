@@ -1,11 +1,11 @@
 # Data-Warehouse-Project
 
-## 🌟 Welcome to My Data Warehouse & Analytics Project!
+##  Welcome to My Data Warehouse & Analytics Project!
 
 This project is a data warehousing solution designed to showcase practical, real-world data engineering and analytics skills.
 Built entirely with **MySQL**, it simulates a **production-grade data warehouse** that integrates **ERP and CRM sales data** to uncover meaningful, data-driven business insights.
 
-### 💡 What This Project Demonstrates
+###  What This Project Demonstrates
 
 - **Modern Data Architecture:** A clean, scalable warehouse design following best practices.
 - **ETL Pipelines:** Automated and optimized data extraction, transformation, and loading workflows.
@@ -27,7 +27,7 @@ Single MySQL schema with **prefix-based layering** (bronze_, silver_, gold_) —
 
 ---
 
-## 📘Project Overview
+## Project Overview
 
 A full-cycle data pipeline from **raw CSV → clean warehouse → business insights**:
 
@@ -40,17 +40,17 @@ A full-cycle data pipeline from **raw CSV → clean warehouse → business insig
 
 ---
 
-## 🚀 Project Requirements
+##  Project Requirements
 
-### 🏗️ Building the Data Warehouse (Data Engineering)
+###  Building the Data Warehouse (Data Engineering)
 
-🎯 Objective:
+ Objective:
 
 Design and implement a **scalable, query-optimized data warehouse** using **MySQL** to integrate sales data from **ERP and CRM systems**, enabling **fast, reliable analytical reporting** and **data-driven decision-making**.
 
 ---
 
-📋 Specifications:
+ Specifications:
 | **Requirement**      | **Implementation**                                                                                                                                                                                                                              |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Data Sources**     | Import **CSV files** from two source systems — **ERP** and **CRM** — containing sales, customer, and product data.                                                                                                                              |
@@ -63,12 +63,12 @@ Design and implement a **scalable, query-optimized data warehouse** using **MySQ
 | **Environment**      | Implemented in **MySQL 8.0+**, using a single schema named **`DataWarehouse`**, structured with **layer prefixes**:<br>• `bronze_` (raw)<br>• `silver_` (cleansed/integrated)<br>• `gold_` (analytical)                                         |
 
 --- 
-## 🌟Data Analytics: Deliver Actionable Insights
+## Data Analytics: Deliver Actionable Insights
 
-**📝Objective**  
+**Objective**  
 Leverage **production-grade SQL** and **Python (Pandas)** to extract deep business intelligence from sales, customer, and product data — delivering **KPIs**, **trend analysis**, and **strategic recommendations** to drive revenue, retention, and operational efficiency.
 
-> **📌Dual-Stack Approach**:  
+> **Dual-Stack Approach**:  
 > - **SQL**: Scalable, production-ready queries on a **gold-layer data warehouse**  
 > - **Python (Pandas)**: Rapid validation, transformation, and visualization  
 > **Result**: 100% consistency across both tools — enterprise-grade reliability
@@ -83,7 +83,7 @@ Leverage **production-grade SQL** and **Python (Pandas)** to extract deep busine
 | **Jupyter Notebook** | Reproducible analysis & documentation |
 ---
 
-### 📈Analysis Performed Using **Both SQL and Python**
+### Analysis Performed Using **Both SQL and Python**
 
 | Insight | SQL Query | Python (Pandas) |
 |-------|----------|-----------------|
@@ -98,7 +98,7 @@ Leverage **production-grade SQL** and **Python (Pandas)** to extract deep busine
 
 ---
 
-### 🔍Key Analytical Reports
+### Key Analytical Reports
 
 | Report | Output | Business Value |
 |-------|--------|----------------|
