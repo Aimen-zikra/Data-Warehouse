@@ -1,29 +1,13 @@
-# Data-Warehouse-Project
-
-##  Welcome to My Data Warehouse & Analytics Project!
-
-This project is a data warehousing solution designed to showcase practical, real-world data engineering and analytics skills.
-Built entirely with **MySQL**, it simulates a **production-grade data warehouse** that integrates **ERP and CRM sales data** to uncover meaningful, data-driven business insights.
-
-###  What This Project Demonstrates
-
-- **Modern Data Architecture:** A clean, scalable warehouse design following best practices.
-- **ETL Pipelines:** Automated and optimized data extraction, transformation, and loading workflows.
-- **Data Modeling:** A well-structured schema built for analytics performance and flexibility.
-- **SQL Analytics:** Advanced SQL queries and visuals that deliver actionable insights for decision-making.
+# Enterprise Sales Data Warehouse
+> End-to-end data warehousing solution built in MySQL — from raw ERP/CRM ingestion to analytics-ready star schema, validated against Python.
 
 ---
 
-Single MySQL schema with **prefix-based layering** (bronze_, silver_, gold_) — no separate databases needed.
+## Overview
 
-| Layer | Purpose | Implementation |
-| --- | --- | --- |
-| **Bronze** | Raw ingestion | bronze_erp_*, bronze_crm_* tables loaded via LOAD DATA INFILE |
-| **Silver** | Cleansed & validated | silver_erp_*, silver_crm_* with deduplication, standardization, joins |
-| **Gold** | Analytics-ready | Star schema: gold_fact_sales, gold_dim_customer, gold_dim_product |
+This project simulates a production-grade data warehouse that integrates sales data from two source systems (ERP and CRM) into a unified, query-optimised schema. The pipeline covers every stage: raw ingestion, cleansing, conflict resolution, dimensional modelling, and analytical reporting — all implemented in MySQL with cross-validation in Python (pandas).
 
-> MySQL Workbench used for design, execution, and visualization.
-> 
+**Core question answered:** How do you turn messy, overlapping data from two systems into a single trusted source for business reporting?
 
 ---
 
@@ -38,15 +22,29 @@ A full-cycle data pipeline from **raw CSV → clean warehouse → business insig
 | **Data Modeling** | **Star Schema** in Gold layer for fast analytical queries |
 | **Analytics & Reporting** | SQL reports on customer behavior, product performance, and sales trends |
 
+
+## Architecture — Medallion Layers
+
+All layers live in a single MySQL schema (`DataWarehouse`) using prefix-based separation:
+
+| Layer | Prefix | Purpose |
+|-------|--------|---------|
+| Bronze | `bronze_` | Raw ingestion via `LOAD DATA INFILE` — no transformations |
+| Silver | `silver_` | Cleansed, deduplicated, standardised; ERP/CRM conflicts resolved |
+| Gold | `gold_` | Star schema optimised for analytical queries |
+
+---
 ---
 
-##  Project Requirements
+## Tech Stack
 
-###  Building the Data Warehouse (Data Engineering)
+| Tool | Purpose |
+|------|---------|
+| MySQL 8.0 | Data warehouse, ETL, all analytical queries |
+| Python (pandas, NumPy) | Cross-validation and visualisation |
+| Jupyter Notebook | Reproducible analysis and documentation |
+| MySQL Workbench | Schema design and execution |
 
- Objective:
-
-Design and implement a **scalable, query-optimized data warehouse** using **MySQL** to integrate sales data from **ERP and CRM systems**, enabling **fast, reliable analytical reporting** and **data-driven decision-making**.
 
 ---
 
@@ -61,53 +59,60 @@ Design and implement a **scalable, query-optimized data warehouse** using **MySQ
 | **Scope**            | Process only the **latest snapshot** of data; **no historical tracking** (no Slowly Changing Dimensions required).                                                                                                                              |
 | **Documentation**    | Provide comprehensive documentation of the data model and pipeline to support both technical and non-technical stakeholders. |
 | **Environment**      | Implemented in **MySQL 8.0+**, using a single schema named **`DataWarehouse`**, structured with **layer prefixes**:<br>• `bronze_` (raw)<br>• `silver_` (cleansed/integrated)<br>• `gold_` (analytical)                                         |
+## Data Model — Star Schema
+```
+gold_fact_sales
+    ├── product_key → gold_dim_products
+    └── customer_key → gold_dim_customers
+```
 
---- 
-## Data Analytics: Deliver Actionable Insights
-
-**Objective**  
-Leverage **production-grade SQL** and **Python (Pandas)** to extract deep business intelligence from sales, customer, and product data — delivering **KPIs**, **trend analysis**, and **strategic recommendations** to drive revenue, retention, and operational efficiency.
-
-> **Dual-Stack Approach**:  
-> - **SQL**: Scalable, production-ready queries on a **gold-layer data warehouse**  
-> - **Python (Pandas)**: Rapid validation, transformation, and visualization  
-> **Result**: 100% consistency across both tools — enterprise-grade reliability
-
----
-
-### Tech Stack
-| Tool | Purpose |
-|------|-------|
-| **MySQL** | Core analytics on `gold_fact_sales`, `gold_dim_*` |
-| **Python (Pandas, NumPy)** | Data validation, automation, and plotting |
-| **Jupyter Notebook** | Reproducible analysis & documentation |
----
-
-### Analysis Performed Using **Both SQL and Python**
-
-| Insight | SQL Query | Python (Pandas) |
-|-------|----------|-----------------|
-| **Total Revenue** | [`business metrics.sql`](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql) | `df['sales_amount'].sum()` |
-| **Monthly Revenue & MoM Growth** | [`business_metrics.sql`]([./business_metrics.sql](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql)) | `df.groupby('month')['sales_amount'].sum()` |
-| **Top 10 Products by Revenue** | [`business_metrics.sql`]([./business_metrics.sql](https://github.com/Aimen-zikra/Data-Warehouse/blob/5411c2f5a8607cb692adea54bc6286390715dd0c/Analysis/business%20metrics.sql)) | `df.merge(products).groupby('product_name')...` |
-| **Customer Lifetime Value** | `JOIN` on `gold_dim_customers` | `df.groupby('customer_key').agg(...)` |
-| **Profit Margin per Product** | `SUM(sales - cost)` | `df['profit'] = df['sales'] - df['cost']` |
-
-<img width="848" height="702" alt="top_products" src="https://github.com/user-attachments/assets/d76b898c-bd59-4347-9757-6a46ab5273e2" />
-<img width="1015" height="592" alt="monthly revenue" src="https://github.com/user-attachments/assets/72276783-479f-4332-b879-a56bd7250b32" />
+**Key modelling decisions:**
+- Surrogate keys generated via `ROW_NUMBER() OVER()` — decouples the warehouse from unstable source IDs
+- CRM treated as master source for customer attributes; ERP used as fallback via `COALESCE` where CRM fields are null
+- Latest snapshot only — no Slowly Changing Dimensions required for this scope
 
 ---
 
-### Key Analytical Reports
+## ETL Pipeline
 
-| Report | Output | Business Value |
-|-------|--------|----------------|
-| **Top 10 Products by Revenue** | Product, Category, Revenue, Units | Focus inventory & marketing |
-| **Customer Lifetime Value (CLTV)** | Customer ID, Total Spent, Orders | Segment VIPs & at-risk |
-| **Monthly Sales Growth (MoM)** | Month, Revenue, % Change | Detect seasonality & trends |
-| **Regional Sales Performance** | Country, Revenue, % Share | Optimize logistics & ads |
-| **Category Profitability** | Category, Revenue, Margin | Prioritize R&D |
-| **Repeat Purchase Rate** | Product, Repeat Ratio | Measure loyalty |
+**Bronze → Silver**
+- `LOAD DATA INFILE` for raw CSV ingestion across 6 source tables
+- Duplicate detection and removal in Silver layer
+- Text standardisation and data type casting
+- NULL handling with documented fallback logic
+
+**Silver → Gold**
+- `INSERT...SELECT` to populate fact and dimension tables
+- Surrogate key assignment on dimension tables
+- Final validation before analytical queries
+
+---
+
+## Analytics — 10 Production SQL Queries
+
+All queries run against the Gold layer and were cross-validated against Python (pandas) with 100% output consistency.
+
+| Query | Business Value |
+|-------|---------------|
+| Monthly Revenue & MoM Growth | Detect seasonality and trends |
+| Top 10 Products by Revenue | Focus inventory and marketing |
+| Customer Lifetime Value (CLV) | Segment high-value customers |
+| Profit Margin per Product | Prioritise category investment |
+| Regional Revenue by Country | Optimise logistics and targeting |
+| Average Order Value (AOV) | Track purchase behaviour |
+| Category Performance | Revenue and volume by category |
+| Revenue by Demographics | Gender and marital status segmentation |
+| Repeat Purchase Rate | Measure product loyalty |
+| Product Line Revenue Over Time | Track portfolio trends monthly |
+
+**MoM Growth — implementation note:**  
+Month-over-month comparison uses a CTE self-join with `DATE_ADD(..., INTERVAL 1 MONTH)` for correct handling of year boundaries (e.g. December → January).
+
+---
+
+## Validation
+
+SQL outputs were independently replicated in Python (pandas) for every aggregate metric. Zero discrepancies found — confirming pipeline integrity end-to-end.
 
 --- 
 ## 👩🏻‍💻Author
