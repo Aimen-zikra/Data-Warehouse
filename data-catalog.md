@@ -1,6 +1,6 @@
-# 🗂️ Data Catalog — Gold Layer
+#  Data Catalog — Gold Layer
 
-### 📘 Overview
+###  Overview
 
 The **Gold Layer** represents the **business-ready data layer** within the warehouse — optimized for analytics, reporting, and decision-making.
 
@@ -8,9 +8,9 @@ It contains **dimension tables** (for descriptive context) and **fact tables** (
 
 ---
 
-### 🧩 1. `gold_dim_customers`
+###  1. `gold_dim_customers`
 
-**📖 Purpose:**
+** Purpose:**
 
 Holds enriched customer information, combining demographic and geographic attributes to support customer-centric analytics.
 
@@ -29,9 +29,9 @@ Holds enriched customer information, combining demographic and geographic attrib
 
 ---
 
-### 📦 2. `gold_dim_products`
+###  2. `gold_dim_products`
 
-**📖 Purpose:**
+** Purpose:**
 
 Contains detailed information about products, their classification, and key business attributes for product performance analysis.
 
@@ -51,9 +51,9 @@ Contains detailed information about products, their classification, and key busi
 
 ---
 
-### 💰 3. `gold_fact_sales`
+###  3. `gold_fact_sales`
 
-**📖 Purpose:**
+** Purpose:**
 
 Captures transactional-level sales data used for analytical reporting, KPI tracking, and business performance insights.
 
